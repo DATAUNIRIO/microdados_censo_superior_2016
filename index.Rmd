@@ -162,7 +162,7 @@ Para responder a essa pergunta, vamos fazer uma visualização da tabela. Em pri
 
 ```{r, comment=NA}
 tabela1<-table(ALUNO_UNIRIO16$DS_COR_RACA_ALUNO)
-par(mar = c(0.5, 8.5, 0.5, 0.5), mgp = c(5, 1, 0))
+par(mar = c(0.5, 8.5, 0.5, 0.5), mgp = c(5, 1, 0),bg="#e0feff")
 library(RColorBrewer)
 pal<-brewer.pal(7,"Reds")
 mosaicplot(tabela1,col=pal,cex.axis = 0.8,las = 3,main="Cor declarada pelos alunos da UNIRIO")
@@ -174,7 +174,7 @@ Uma variável que parece ser interessante é a situação dos alunos da Universi
 
 ```{r, comment=NA}
 tabela1<-table(ALUNO_UNIRIO16$DS_ALUNO_SITUACAO)
-par(mar = c(0.5, 8.5, 0.5, 0.5), mgp = c(5, 1, 0))
+par(mar = c(0.5, 8.5, 0.5, 0.5), mgp = c(5, 1, 0),bg="#e0feff")
 pal<-brewer.pal(6,"Blues")
 mosaicplot(tabela1,col=pal,cex.axis = 0.8,las = 3,main="Situação dos alunos da UNIRIO")
 
@@ -194,12 +194,14 @@ contagem = table(ALUNO_UNIRIO16$DS_MODALIDADE_ENSINO)
 nomes = levels(ALUNO_UNIRIO16$DS_MODALIDADE_ENSINO)
 porcent = round(contagem/sum(contagem)*100,2)
 rotulo=paste(nomes," (",porcent,"%",")",sep="")
+par(bg="#e0feff")
 pie(table(ALUNO_UNIRIO16$DS_MODALIDADE_ENSINO),labels=rotulo, main="Modalidade de Ensino",col=c("#ffab44","#155a96"))
 
 contagem = table(ALUNO_UNIRIO16$DS_GRAU_ACADEMICO)
 nomes = levels(ALUNO_UNIRIO16$DS_GRAU_ACADEMICO)
 porcent = round(contagem/sum(contagem)*100,2)
 rotulo=paste(nomes," (",porcent,"%",")",sep="")
+par(bg="#e0feff")
 pie(table(ALUNO_UNIRIO16$DS_GRAU_ACADEMICO),labels=rotulo, main="Grau Acadêmico",col=c("#ffab44","#155a96"))
 ```
 
@@ -219,28 +221,24 @@ library(maptools)
  library(rgdal)
  library(sf)
 
-tabela1<-table(ALUNO_UNIRIO16$CO_UF_NASCIMENTO)
-tabela1<-data.frame(tabela1)
-invisible(Mapa_basededados <- merge(Mapa_brasil, tabela1, by.x = "State", by.y = "Var1", all = TRUE))
-```
-
-```{r, eval=FALSE}
-library(tmap)
-tm_shape(Mapa_basededados) + tm_fill("Freq", style="jenks") +
-  tm_borders() + tm_layout(frame=F)
+tabelamapa<-table(ALUNO_UNIRIO16$CO_UF_NASCIMENTO)
+tabelamapa<-data.frame(tabelamapa)
+invisible(Mapa_basededados <- merge(Mapa_brasil, tabelamapa, by.x = "State", by.y = "Var1", all = TRUE))
+par(bg="#e0feff")
+plot(Mapa_basededados["Freq"])
 ```
 
 ```{r, echo=FALSE,warning=FALSE,message=NA}
-library(leaflet)
-library(magrittr)
- leaflet(Mapa_basededados) %>%
-   addPolygons(color = "#444444", weight = 1, smoothFactor = 0.5,
-               opacity = 1.0, fillOpacity = 0.5,
-               fillColor = ~colorQuantile("YlOrRd", Freq)(Freq),
-               highlightOptions = highlightOptions(color = "white", weight = 2,
-                                                   bringToFront = TRUE), popup = ~as.character(Freq))%>%
-  addProviderTiles(providers$Esri.WorldImagery)
+#library(leaflet)
+#library(magrittr)
+# leaflet(Mapa_basededados) %>%
+#   addPolygons(color = "#444444", weight = 1, smoothFactor = 0.5,
+#               opacity = 1.0, fillOpacity = 0.5,
+#               fillColor = ~colorQuantile("YlOrRd", Freq)(Freq),
+#               highlightOptions = highlightOptions(color = "white", weight = 2,
+#                                                   bringToFront = TRUE), popup = ~as.character(Freq))%>%
+#  addProviderTiles(providers$Esri.WorldImagery)
 ```
 
-Existem diversas outras análises possíveis. 
+Existem diversas outras análises possíveis. Encontre a sua!
 
