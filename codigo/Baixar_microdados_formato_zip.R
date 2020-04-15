@@ -22,10 +22,10 @@ nome_arquivos<-nome_arquivos[286:309]
 nome_arquivos[2]
 
 j<-1995
-for (i in 1:2) {
+for (i in 1:24) {
   url <- nome_arquivos[i]
   local<-paste0("C:/Users/steve/OneDrive/Desktop/microdados_INEP/microdados_educacao_superior_",j,".zip")
-  Sys.sleep(1)
+  Sys.sleep(10)
   download.file(url, local, mode="wb")  
   print(j)
   j=j+1
