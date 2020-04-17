@@ -1,5 +1,5 @@
 
-load("C:/Users/steve/OneDrive/Documents/GitHub/microdados_censo_superior_INEP/dados/UNIRIO_2018_CENSO_EDUCACAO_SUPERIOR.RData")
+load("C:/Users/steve/OneDrive/Documents/GitHub/microdados_censo_superior_INEP/dados/2018/UNIRIO_2018_CENSO_EDUCACAO_SUPERIOR.RData")
 
 MCES2018A$TP_CATEGORIA_ADMINISTRATIVA <- as.factor(MCES2018A$TP_CATEGORIA_ADMINISTRATIVA)
 levels(MCES2018A$TP_CATEGORIA_ADMINISTRATIVA) <- c("Pública Federal","Pública Estadual",
