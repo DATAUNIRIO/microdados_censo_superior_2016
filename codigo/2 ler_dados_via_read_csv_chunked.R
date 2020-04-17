@@ -25,8 +25,8 @@ library("rio")
 # export to sheets of an Excel workbook
 export(list(Professor2018 = MCES2018P, Aluno2018 = MCES2018A), "UNIRIO_2018_CENSO_EDUCACAO_SUPERIOR.xlsx")
 export(MCES2018P, "UNIRIO_2018_Professor_CENSO_EDUCACAO_SUPERIOR.csv")
-export(MCES2018A, "UNIRIO_2018_Aluno_CENSO_EDUCACAO_SUPERIOR.csv")
-
+#export(MCES2018A, "UNIRIO_2018_Aluno_CENSO_EDUCACAO_SUPERIOR.csv")
+write.csv(MCES2018A, "UNIRIO_2018_Aluno_CENSO_EDUCACAO_SUPERIOR.csv")
 
 # Uma solução muito boa é usar a função read_csv_chunked() do pacote readr. 
 # Esta função permite a leitura e aplicação de uma função a cada chunk (número de linhas) iterativamente. 
