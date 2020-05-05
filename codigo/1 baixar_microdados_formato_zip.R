@@ -7,6 +7,12 @@
 ##    UNIRIO                                                                      ##
 ##--------------------------------------------------------------------------------##
 
+# USAR O JOBS DO RSTUDIO
+# Multitask with RStudio’s Jobs
+# https://drkeithmcnulty.com/2020/02/27/ten-time-saving-r-hacks/
+# ver o item 7
+
+
 
 library(rvest)
 
